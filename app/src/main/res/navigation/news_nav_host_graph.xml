@@ -47,5 +47,9 @@
         app:popExitAnim="@anim/slide_out_right"
         android:id="@+id/articleFragment"
         android:name="com.example.android.worldnews.app.ui.fragments.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+        <argument
+            android:name="article"
+            app:argType="com.example.android.worldnews.app.model.Article" />
+    </fragment>
 </navigation>
