@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.android.worldnews.app.model.Article
 import com.example.android.worldnews.databinding.ListItemArticleBinding
 
@@ -35,11 +37,19 @@ class NewsAdapter(private val context:Context) : RecyclerView.Adapter<NewsAdapte
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val article=differ.currentList[position]
+        if(article.author==null){
+            article.author="Unknown"
+        }
         holder.binding.articleTitle.text=article.title
         holder.binding.articleDescription.text=article.description
         holder.binding.articleAuthor.text=article.source.name
         holder.binding.articleTime.text=article.publishedAt
-        Glide.with(context).load(article.urlToImage).into(holder.binding.articleImage)
+        Glide.with(context).
+        load(article.urlToImage).
+        thumbnail(0.05f).
+        transition(DrawableTransitionOptions.withCrossFade()).
+        diskCacheStrategy(DiskCacheStrategy.NONE).
+        into(holder.binding.articleImage)
         holder.binding.root.setOnClickListener{
             mListener?.let{ it(article) }
         }

@@ -10,7 +10,7 @@ import com.example.android.worldnews.app.util.Constants.Companion.DATABASE_NAME
 
 
 @TypeConverters(Converters::class)
-@Database(entities = [Article::class],version = 1,exportSchema = false)
+@Database(entities = [Article::class],version = 2,exportSchema = false)
 abstract class ArticleDatabase : RoomDatabase(){
 
     abstract fun getArticleDao():ArticleDao
@@ -29,7 +29,7 @@ abstract class ArticleDatabase : RoomDatabase(){
                     context.applicationContext,
                     ArticleDatabase::class.java,
                     DATABASE_NAME
-                ).build()
+                ).fallbackToDestructiveMigration().build()
             }
         }
     }

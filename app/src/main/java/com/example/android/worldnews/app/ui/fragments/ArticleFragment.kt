@@ -32,6 +32,8 @@ class ArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.webView.apply {
             webViewClient= WebViewClient()
+            settings.javaScriptEnabled=true
+            settings.javaScriptCanOpenWindowsAutomatically=true
             loadUrl(args.article.url)
         }
 

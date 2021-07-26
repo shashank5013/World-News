@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.worldnews.app.adapters.NewsAdapter
+import com.example.android.worldnews.app.adapters.SavedNewsAdapter
 import com.example.android.worldnews.app.viewmodels.NewsViewModel
 import com.example.android.worldnews.databinding.FragmentSavedNewsBinding
 import com.google.android.material.snackbar.Snackbar
@@ -35,7 +36,7 @@ class SavedNewsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter=NewsAdapter(requireContext())
+        val adapter=SavedNewsAdapter(requireContext())
         adapter.setOnClickListener {
             val action = SavedNewsFragmentDirections.actionSavedNewsFragmentToArticleFragment(it)
             findNavController().navigate(action)
